@@ -9,8 +9,8 @@ namespace SecureVault
     public class App
     {
         private bool isRunning = false;
-        private AppState state;
 
+        public static AppState state;
         public App()
         { 
             isRunning = true;
@@ -46,6 +46,7 @@ namespace SecureVault
             while (isRunning)
             {
                 if (state == AppState.QUIT) { isRunning = false;}
+                else if (state == AppState.LOGIN_SCREEN) { new Login().handleLogin(); }
 
             }
         }

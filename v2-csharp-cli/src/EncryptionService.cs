@@ -18,8 +18,6 @@ namespace SecureVault
                 key = sha256.ComputeHash(Encoding.UTF8.GetBytes(text));
                 iv = sha256.ComputeHash(key).Take(16).ToArray();
             }
-
-            
         }
 
         public string Encrypt(string text)
