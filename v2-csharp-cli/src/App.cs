@@ -47,6 +47,7 @@ namespace SecureVault
             {
                 if (state == AppState.QUIT) { isRunning = false;}
                 else if (state == AppState.LOGIN_SCREEN) { new Login().handleLogin(); }
+                else if (state == AppState.MAIN_MENU) { handleMainMenu(); }
 
             }
         }
