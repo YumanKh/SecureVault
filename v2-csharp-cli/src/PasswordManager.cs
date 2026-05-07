@@ -20,8 +20,8 @@ namespace SecureVault
             Console.WriteLine("===Secure-Vault===");
             Console.WriteLine("[1] Add Password");
             Console.WriteLine("[2] Get Password");
-            Console.WriteLine("[3] Delete Password");
-            Console.WriteLine("[4] List Passwords");
+            Console.WriteLine("[3] List Passwords");
+            Console.WriteLine("[4] Delete Password");
             Console.WriteLine("[0] Return to menu\n");
 
             try { input = int.Parse(Console.ReadLine()); }
@@ -37,6 +37,9 @@ namespace SecureVault
                     break;
                 case 2:
                     getPassword();
+                    break;
+                case 3:
+                    listPassword();
                     break;
             }
         }
@@ -97,6 +100,37 @@ namespace SecureVault
                     if (!found) { Console.WriteLine("No password found for that site and username.\n"); }
                 }
             } catch(Exception) { Console.WriteLine("Error reading passwords file.\n"); }
+        }
+        public void listPassword()
+        {
+            string website, username, password;
+            List<PasswordEntry> entries = new List<PasswordEntry>();
+
+            try
+            {
+                using (StreamReader reader = new StreamReader("passwords.txt"))
+                {
+                    string line;
+                    while ((line = reader.ReadLine()) != null)
+                    {
+                        string[] parts = line.Split('|');
+                        if (parts.Length == 3)
+                        {
+                            website = parts[0];
+                            username = parts[1];
+                            password = Login.encryption.Decrypt(parts[2]);
+
+                            entries.Add(new PasswordEntry
+                            {
+                                Website = website,
+                                Username = username,
+                                Password = password
+                            });
+                        }
+                    }
+                    foreach (PasswordEntry entry in entries) { Console.WriteLine($"Password for {entry.Website} ({entry.Username}): {entry.Password}");}
+                }
+            } catch (Exception) { Console.WriteLine("Error: file not found.\n"); }
         }
     }
 }
