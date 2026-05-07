@@ -16,10 +16,7 @@ namespace SecureVault
             Console.WriteLine("[2] Create Account");
             Console.WriteLine("[0] Exit\n");
 
-            try
-            {
-                input = int.Parse(Console.ReadLine());
-            }
+            try { input = int.Parse(Console.ReadLine()); }
             catch (Exception) { Console.WriteLine("Invalid input.\n"); }
 
             switch (input)
@@ -65,27 +62,27 @@ namespace SecureVault
                             decrypted_password = decryption.Decrypt(encrypted_password);
                             if (decrypted_password == password)
                             {
-                                Console.WriteLine("Login successful!\n");
+                                Console.WriteLine("\nLogin successful!\n");
                                 App.state = AppState.MAIN_MENU;
                                 return;
                             }
                             else
                             {
-                                Console.WriteLine("Incorrect password.\n");
+                                Console.WriteLine("\nIncorrect password.\n");
                                 return;
                             }
                         }
                     }
                     if (!found)
                     {
-                        Console.WriteLine("Username not found.\n");
+                        Console.WriteLine("\nUsername not found.\n");
                     }
                 }
 
             }
             catch (IOException)
             {
-                Console.WriteLine("Error: could not open file.");
+                Console.WriteLine("\nError: could not open file.\n");
             }
         }   
 
@@ -99,7 +96,7 @@ namespace SecureVault
                     username = Console.ReadLine();
                     Console.Write("Enter password: ");
                     password = Console.ReadLine();
-                    Console.WriteLine("Account created successfully!\n");
+                    Console.WriteLine("\nAccount created successfully!\n");
                     EncryptionService encryption = new EncryptionService(password);
 
                     encrypted_password = encryption.Encrypt(password);
@@ -108,7 +105,7 @@ namespace SecureVault
             }
             catch (IOException)
             {
-                Console.WriteLine("Error: could not open file.");
+                Console.WriteLine("\nError: could not open file.\n");
             }
         }
     }

@@ -37,9 +37,11 @@ namespace SecureVault
                 case 0:
                     state = AppState.LOGIN_SCREEN;
                     break;
-                
+                case 1:
+                    state = AppState.PASSWORD_MANAGER;
+                    break;
+
             }
-            
         }
         public void Run()
         {
@@ -48,6 +50,7 @@ namespace SecureVault
                 if (state == AppState.QUIT) { isRunning = false;}
                 else if (state == AppState.LOGIN_SCREEN) { new Login().handleLogin(); }
                 else if (state == AppState.MAIN_MENU) { handleMainMenu(); }
+                else if (state == AppState.PASSWORD_MANAGER) { new PasswordManager().handlePasswordManager(); }
 
             }
         }
