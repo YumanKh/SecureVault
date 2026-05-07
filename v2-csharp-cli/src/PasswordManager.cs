@@ -53,8 +53,7 @@ namespace SecureVault
             Console.Write("Enter password: ");
             password = Console.ReadLine();
 
-            EncryptionService encrypt = new EncryptionService(password);
-            encrypted_password = encrypt.Encrypt(password);
+            encrypted_password = Login.encryption.Encrypt(password);
 
             try
             {
@@ -90,8 +89,7 @@ namespace SecureVault
                         {
                             found = true;
                             encrypted_password = parts[2];
-                            EncryptionService decrypt = new EncryptionService(encrypted_password);
-                            decrypted_password = decrypt.Decrypt(encrypted_password);
+                            decrypted_password = Login.encryption.Decrypt(encrypted_password);
                             Console.WriteLine($"Password for {website} ({username}): {decrypted_password}\n");
                             break;
                         }

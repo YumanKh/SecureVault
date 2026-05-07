@@ -7,6 +7,8 @@ namespace SecureVault
 {
     public class Login
     {
+        public static EncryptionService encryption;
+
         public void handleLogin()
         {
             int input = -1;
@@ -46,6 +48,8 @@ namespace SecureVault
                 Console.Write("Enter password: ");
                 password = Console.ReadLine();
 
+                encryption = new EncryptionService(password); // Ensure encryption key is initialized
+
                 using (StreamReader reader = new StreamReader("users.txt"))
                 {
                     string line;
@@ -58,8 +62,7 @@ namespace SecureVault
                         {
                             found = true;
                             encrypted_password = parts[1];
-                            EncryptionService decryption = new EncryptionService(password);
-                            decrypted_password = decryption.Decrypt(encrypted_password);
+                            decrypted_password = encryption.Decrypt(encrypted_password);
                             if (decrypted_password == password)
                             {
                                 Console.WriteLine("\nLogin successful!\n");
@@ -97,7 +100,6 @@ namespace SecureVault
                     Console.Write("Enter password: ");
                     password = Console.ReadLine();
                     Console.WriteLine("\nAccount created successfully!\n");
-                    EncryptionService encryption = new EncryptionService(password);
 
                     encrypted_password = encryption.Encrypt(password);
                     writer.WriteLine($"{username}:{encrypted_password}");
