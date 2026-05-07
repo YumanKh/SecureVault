@@ -16,7 +16,7 @@ namespace SecureVault
         public void handlePasswordManager()
         {
             int input = -1;
-            Console.WriteLine("\n    Password Manager");
+            Console.WriteLine("\n Password Manager");
             Console.WriteLine("===Secure-Vault===");
             Console.WriteLine("[1] Add Password");
             Console.WriteLine("[2] Get Password");
@@ -35,13 +35,17 @@ namespace SecureVault
                 case 1:
                     addPassword();
                     break;
+                case 2:
+                    getPassword();
+                    break;
             }
         }
         public void addPassword()
         {
             string website, username, password, encrypted_password;
 
-            Console.WriteLine("\n===Add Password===");
+            Console.WriteLine("\n Password Manager");
+            Console.WriteLine("===Add Password===");
             Console.Write("Enter site: ");
             website = Console.ReadLine();
             Console.Write("Enter username: ");
@@ -60,6 +64,41 @@ namespace SecureVault
                 }
             }
             catch (Exception) { Console.WriteLine("Error saving password: could not open file.\n"); }
+        }
+        public void getPassword()
+        {
+            string website, username, encrypted_password, decrypted_password;
+
+            try
+            {
+                using (StreamReader reader = new StreamReader("passwords.txt"))
+                {
+                    string line;
+                    bool found = false;
+
+                    Console.WriteLine("\n Password Manager");
+                    Console.WriteLine("===Get Password===");
+                    Console.Write("Enter site: ");
+                    website = Console.ReadLine();
+                    Console.Write("Enter username: ");
+                    username = Console.ReadLine();
+
+                    while ((line = reader.ReadLine()) != null)
+                    {
+                        string[] parts = line.Split('|');
+                        if (parts.Length == 3 && parts[0] == website && parts[1] == username)
+                        {
+                            found = true;
+                            encrypted_password = parts[2];
+                            EncryptionService decrypt = new EncryptionService(encrypted_password);
+                            decrypted_password = decrypt.Decrypt(encrypted_password);
+                            Console.WriteLine($"Password for {website} ({username}): {decrypted_password}\n");
+                            break;
+                        }
+                    }
+                    if (!found) { Console.WriteLine("No password found for that site and username.\n"); }
+                }
+            } catch(Exception) { Console.WriteLine("Error reading passwords file.\n"); }
         }
     }
 }
