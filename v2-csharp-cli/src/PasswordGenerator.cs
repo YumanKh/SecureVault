@@ -30,6 +30,9 @@ namespace SecureVault
             Console.WriteLine("[1] Generate Password");
             Console.WriteLine("[0] Return to menu\n");
 
+            try { input = int.Parse(Console.ReadLine()); }
+            catch (Exception) { Console.WriteLine("Invalid input.\n"); }
+
             switch (input)
             {
                 case 0:
@@ -37,17 +40,18 @@ namespace SecureVault
                     break;
                 case 1:
                     int length = 0;
-                    string password;
+                    string password = "";
 
-                    Console.WriteLine("Enter desired password length: ");
+                    Console.Write("Enter desired password length: ");
                     try
                     {
                         length = int.Parse(Console.ReadLine());
+                        if (length < 6) { Console.WriteLine("Length must be at least 6.\n"); break; }
                     }
                     catch (Exception) { Console.WriteLine("You can only enter a number.\n"); }
 
                     password = passwordGenerator(length);
-                    Console.WriteLine($"Generated password: {password}\n");
+                    if (password != "") Console.WriteLine($"Generated password: {password}\n");
                     break;
             }
         }
