@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace SecureVault
 {
@@ -36,6 +37,42 @@ namespace SecureVault
                 }
             }
             catch (Exception) { Console.WriteLine("Error: file not found.\n"); }
+        }
+        public void getNote()
+        {
+            string title, crypted_content, decrypted_content;
+
+            Console.WriteLine("\n  Secure Notes");
+            Console.WriteLine("====Get Note====");
+            Console.Write("Enter title: ");
+            title = Console.ReadLine();
+
+            try
+            {
+                using (StreamReader reader = new StreamReader("notes.txt"))
+                {
+                    string line;
+                    bool found = false;
+
+                    while ((line = reader.ReadLine()) != null)
+                    {
+                        string[] parts = line.Split('|');
+                        if (parts.Length == 2 && parts[0] == title)
+                        {
+                            found = true;
+                            crypted_content = parts[1];
+                            decrypted_content = Login.encryption.Decrypt(crypted_content);
+                            Console.WriteLine($"Note for {title}: {decrypted_content}\n");
+                            break;
+                        }
+                    }
+                    if (!found)
+                    {
+                        Console.WriteLine("No note found for that title.\n");
+                    }
+                }
+               
+            } catch(Exception) { Console.WriteLine("Error reading passwords file.\n"); }
         }
     }
 }

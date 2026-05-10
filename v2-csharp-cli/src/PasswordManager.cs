@@ -74,19 +74,19 @@ namespace SecureVault
         {
             string website, username, encrypted_password, decrypted_password;
 
+            Console.WriteLine("\n Password Manager");
+            Console.WriteLine("===Get Password===");
+            Console.Write("Enter site: ");
+            website = Console.ReadLine();
+            Console.Write("Enter username: ");
+            username = Console.ReadLine();
+
             try
             {
                 using (StreamReader reader = new StreamReader("passwords.txt"))
                 {
                     string line;
                     bool found = false;
-
-                    Console.WriteLine("\n Password Manager");
-                    Console.WriteLine("===Get Password===");
-                    Console.Write("Enter site: ");
-                    website = Console.ReadLine();
-                    Console.Write("Enter username: ");
-                    username = Console.ReadLine();
 
                     while ((line = reader.ReadLine()) != null)
                     {
