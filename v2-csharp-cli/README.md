@@ -8,9 +8,9 @@
 
 This project is part of a **multi-version monorepo** designed to track the full evolution of SecureVault across languages, architectures, and complexity levels.
 
-> **Note:** The git history for V1 (C++ CLI) was lost during the monorepo restructuring. The V1 source code is intact under `v1-cpp-cli/`. This was an unfortunate git incident — not a lack of version control discipline.
+> **Note:** The git history for V1 (C++ CLI) was lost during the monorepo restructuring. The V1 source code is intact under `v1-cpp-cli/`. This was an unfortunate git incident.
 
-After completing V1 in C++, I chose to rebuild SecureVault in C# before moving to a GUI implementation. The goal was to train my C# and .NET skills on a real project with real constraints — not toy examples — before tackling cross-language interoperability in V3.
+After completing V1 in C++, I chose to rebuild SecureVault in C# before moving to a GUI implementation. The goal was to train my C# and .NET skills on a real project with real constraints instead of toy examples before tackling cross-language interoperability in V3.
 
 ---
 
@@ -20,8 +20,8 @@ After completing V1 in C++, I chose to rebuild SecureVault in C# before moving t
 |---|---|---|
 | V1 — C++ CLI | C++17, XOR encryption, fstream | ✅ Complete |
 | V2 — C# CLI | C# .NET 10, AES-256, StreamReader/Writer | ✅ Complete |
-| V3 — Windows GUI | C# WPF front-end + C++ backend DLL | 🔄 In progress |
-| V4 — Networked | SQL data layer + client/server architecture | 📋 Planned |
+| V3 — Windows GUI | C# WPF front-end + C++ backend DLL | 📋 In progress |
+| V4 — Networked | SQL data layer + C# client/server architecture | 📋 Planned |
 
 ---
 
@@ -29,11 +29,8 @@ After completing V1 in C++, I chose to rebuild SecureVault in C# before moving t
 
 V2 is a significant upgrade over V1 — same feature set, but rebuilt with professional-grade tools and a cleaner architecture:
 
-- **AES-256 encryption** replaces the custom XOR cipher — industry-standard security used in banking, government, and commercial software
+- **AES-256 encryption** replaces the custom XOR cipher
 - **Deterministic key derivation** via SHA-256 — the master password generates a consistent 256-bit key at every session, no key storage required
-- **C# .NET 10** — managed runtime, garbage collection, and a richer standard library
-- **LINQ-powered** password strength analysis — concise, expressive, and readable
-- **Structured file persistence** — human-readable `|`-delimited format with encrypted payloads
 
 ---
 
@@ -49,9 +46,9 @@ V2 is a significant upgrade over V1 — same feature set, but rebuilt with profe
 
 ## How It Works
 
-- The **master password** is hashed via SHA-256 to derive a 256-bit AES key — deterministic and session-consistent
-- The **IV** (Initialization Vector) is derived from the key itself — ensuring consistency across sessions without storage
-- All sensitive data is encrypted before being written to disk — passwords, notes, and credentials
+- The **master password** is hashed via SHA-256 to derive a 256-bit AES key
+- The **IV** is derived from the key itself
+- All sensitive data is encrypted before being written to disk
 - Data is persisted in structured `.txt` files using a `field|encrypted_payload` format
 - The entire application is driven by a centralized **App Loop** with an `AppState` enum managing navigation
 
@@ -76,7 +73,7 @@ V2 is a significant upgrade over V1 — same feature set, but rebuilt with profe
 - **LINQ** — password strength analysis
 - **StreamReader / StreamWriter** — file persistence
 - **OOP** — classes, structs, properties, enums
-- **Visual Studio Community 2022**
+- **Visual Studio Community**
 
 ---
 
@@ -105,7 +102,7 @@ v2-csharp-cli/
 3. Create an account with a username and master password
 4. Log in — your master password generates the AES key for the session
 5. Navigate the menu to access all modules
-6. **Important** — your master password is the only key to your data. It is never stored. Without it, all encrypted data is unrecoverable.
+6. **Important** — your master password is the only key to your data. It is never stored. All encrypted data is unrecoverable without it.
 
 ---
 
@@ -124,23 +121,21 @@ The goal is to build a complete, polished desktop application that demonstrates 
 
 **Yuman Khoufache** — First-year Computer Science student, self-directed learner, and aspiring multi-domain developer.
 
-Beyond coursework, I build real projects to explore OOP architecture, cryptography, file I/O, and software design. SecureVault V2 is part of a long-term portfolio strategy targeting software development, game development, and AI — across C++, C#, and Python.
-
-> *"I don't just want to know how to program — I want a future as a professional developer."*
+Beyond coursework, I build real projects to explore OOP architecture, cryptography, file I/O, and software design. SecureVault V2 is part of a long-term portfolio strategy targeting software development and game development— across C++ and C#.
 
 ---
 
 ## Special Thanks
 
-- **Claude (Anthropic)** — technical guidance and C# instruction
-- **GitHub Copilot** — occasional syntax suggestions
+- **Claude (Anthropic)** — minor debugging assistance (Learning and using C#Syntax was easier than C++ lol)
 
 ---
 
 ## License
 
-© 2026 Yuman Khoufache — No copyright restrictions. Free to use, modify, and distribute.
+© 2026 Yuman Khoufache — No copyright restrictions.
 
 ---
 
 🔗 [GitHub](https://github.com/YumanKh) | [V1 — C++ CLI](../v1-cpp-cli/) | V3 — Coming Soon
+
