@@ -1,6 +1,6 @@
 # SecureVault — V2 | C# .NET CLI
 
-> A complete CLI vault application rebuilt from the ground up in C# .NET — featuring AES-256 encryption, a modular OOP architecture, and a multi-account login system. This is the second iteration of SecureVault, and the foundation for a future Windows GUI release.
+> A complete CLI vault application rebuilt from the ground up in C# .NET — featuring AES-256 encryption, a modular OOP architecture, and a multi-account login system. This is the second iteration of SecureVault, and the foundation for a future web release.
 
 ---
 
@@ -10,7 +10,7 @@ This project is part of a **multi-version monorepo** designed to track the full 
 
 > **Note:** The git history for V1 (C++ CLI) was lost during the monorepo restructuring. The V1 source code is intact under `v1-cpp-cli/`. This was an unfortunate git incident.
 
-After completing V1 in C++, I chose to rebuild SecureVault in C# before moving to a GUI implementation. The goal was to train my C# and .NET skills on a real project with real constraints instead of toy examples before tackling cross-language interoperability in V3.
+After completing V1 in C++, I chose to rebuild SecureVault in C# before moving to a GUI implementation. The goal was to train my C# and .NET skills on a real project with real constraints instead of toy examples.
 
 ---
 
@@ -20,9 +20,10 @@ After completing V1 in C++, I chose to rebuild SecureVault in C# before moving t
 |---|---|---|
 | V1 — C++ CLI | C++17, XOR encryption, fstream | ✅ Complete |
 | V2 — C# CLI | C# .NET 10, AES-256, StreamReader/Writer | ✅ Complete |
-| V3 — Windows GUI | C# WPF front-end + C++ backend DLL | 📋 In progress |
-| V4 — Networked | SQL data layer + C# client/server architecture | 📋 Planned |
+| V3 — Web Application | ASP.NET Core + SQL + TypeScript + HTML/CSS | 🔄 Planned |
 
+## Why the change from WPF to Web?
+> The original plan was a Windows desktop GUI (WPF + C++ DLL). After further research and career planning, the decision was made to pivot to a full web stack, ASP.NET Core Backend + TypeScript/HTML/CSS FrontEnd + SQL Database. This aligns better with the job market and modern development practices, and the result will be a deployed, publicly accessible application rather than a local desktop app. Which I believe will be more impressive.
 ---
 
 ## What's New in V2
@@ -31,6 +32,8 @@ V2 is a significant upgrade over V1 — same feature set, but rebuilt with profe
 
 - **AES-256 encryption** replaces the custom XOR cipher
 - **Deterministic key derivation** via SHA-256 — the master password generates a consistent 256-bit key at every session, no key storage required
+- **LINQ powered password strength analysis**
+- **Structured file persistence with encrypted payloads**
 
 ---
 
@@ -106,22 +109,21 @@ v2-csharp-cli/
 
 ---
 
-## What's Next — V3
+## What's Next — Final Version (Not Planned to be V3 yet)
 
-V3 will be a full **Windows desktop application** built with:
-- **C# WPF** — front-end GUI with a professional interface
-- **C++ DLL** — the encryption and core logic compiled as a native backend
-- **P/Invoke** — cross-language interoperability between C# and C++
+V3 will be a full **Web application** built with:
+- ASP.NET Core — REST API backend
+- SQL — structured data storage replacing file-based persistence
+- TypeScript + HTML/CSS — modern frontend interface
+- Deployed online — publicly accessible via a real URL
 
-The goal is to build a complete, polished desktop application that demonstrates cross-language architecture — and to raise the professional score significantly above V2.
+The goal is to rebuild SecureVault as a production-grade web application. Showing full-stack architecture, database design, authentication, and cloud deployment.
 
 ---
 
 ## Author
 
-**Yuman Khoufache** — First-year Computer Science student, self-directed learner, and aspiring multi-domain developer.
-
-Beyond coursework, I build real projects to explore OOP architecture, cryptography, file I/O, and software design. SecureVault V2 is part of a long-term portfolio strategy targeting software development and game development— across C++ and C#.
+**Yuman Khoufache** — First-year Computer Science student, self-directed learner, and aspiring software developer.
 
 ---
 
