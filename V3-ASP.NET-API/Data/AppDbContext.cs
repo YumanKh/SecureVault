@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SecureVaultAPI.Models;
 
-namespace NotesAPI.Data
+namespace SecureVaultAPI.Data
 {
     public class AppDbContext : DbContext
     {
