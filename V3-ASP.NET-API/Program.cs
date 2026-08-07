@@ -16,6 +16,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
         .GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<AuthService>();
+builder.Services.AddScoped<PasswordService>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
